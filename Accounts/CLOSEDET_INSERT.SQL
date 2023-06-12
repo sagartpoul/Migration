@@ -1,0 +1,455 @@
+/*
+*	author : root
+*	date : Wed Oct 07 17:35:24 IST 2015
+*	Description : building CLOSEDET
+*/
+DECLARE
+--FIXED VARIABLES
+	v_STAGE NUMBER := 0;
+	v_STAGE_TITLE VARCHAR2(50) := 'CLOSEDET INSERT';
+	c_LOG_FILE_NAME VARCHAR2(30) := 'CLOSEDET.txt';
+	c_LOG_FILE_INSERT VARCHAR2(30) := 'CLOSEDET_INSERT_LOG.txt';
+	v_ExistCount NUMBER := 0;
+	v_oFile UTL_FILE.FILE_TYPE;
+	v_oFile_INSERT UTL_FILE.FILE_TYPE;
+	c_REC SYS_REFCURSOR;
+	rec_CONFIG CSV_CONFIG%ROWTYPE;
+	v_BRCODE NUMBER(4,0);
+-- COUNTER SPECIFIC
+	v_SUCCESS_COUNT NUMBER(7,0) := 0;
+	v_FAILURE_COUNT NUMBER(7,0) := 0;
+	v_TOTAL_COUNT NUMBER(7,0) := 0;
+--OBJECT DEPENDENT
+	v_POST_UR_ID NUMBER(4, 0);
+	v_POST_UR_TIME NUMBER(4, 0);
+	v_PASS_UR_ID NUMBER(4, 0);
+	v_PASS_UR_TIME NUMBER(4, 0);
+	v_BR_CODE NUMBER(4, 0);
+	v_ACTNO VARCHAR2(13);
+	v_STATUS VARCHAR2(1);
+	v_IR_NO NUMBER(6, 0);
+	v_TRAN_DATE DATE;
+	v_TRAN_CODE VARCHAR2(1);
+	v_TRAN_NO NUMBER(6, 0);
+	v_BATCH_NO NUMBER(6, 0);
+	v_BLACTNO1 VARCHAR2(13);
+	v_BLACTNO2 VARCHAR2(13);
+	v_BLACTNO3 VARCHAR2(13);
+	v_BLACTNO4 VARCHAR2(13);
+	v_BLACTNO5 VARCHAR2(13);
+	v_TRAMT1 NUMBER(15, 2);
+	v_TRAMT1_AMT_DC VARCHAR2(1);
+	v_TRAMT2 NUMBER(15, 2);
+	v_TRAMT2_AMT_DC VARCHAR2(1);
+	v_TRAMT3 NUMBER(15, 2);
+	v_TRAMT3_AMT_DC VARCHAR2(1);
+	v_TRAMT4 NUMBER(15, 2);
+	v_TRAMT4_AMT_DC VARCHAR2(1);
+	v_TRAMT5 NUMBER(15, 2);
+	v_TRAMT5_AMT_DC VARCHAR2(1);
+	v_OLDINTRT NUMBER(4, 2);
+	v_PERIOD_DAYS NUMBER(5, 0);
+	v_PERIOD_MONTHS NUMBER(5, 0);
+	v_INT_RT NUMBER(4, 2);
+	v_PRIN_AMT NUMBER(15, 2);
+	v_PRIN_AMT_DC VARCHAR2(1);
+	v_INT_AMT NUMBER(15, 2);
+	v_INT_AMT_DC VARCHAR2(1);
+	v_INT_UPTO_DT DATE;
+	v_CHRG_AMT NUMBER(15, 2);
+	v_CHRG_AMT_DC VARCHAR2(1);
+	v_CHRG_AMT1 NUMBER(15, 2);
+	v_CHRG_AMT1_DC VARCHAR2(1);
+	v_RDUE_AMT NUMBER(15, 2);
+	v_RDUE_AMT_DC VARCHAR2(1);
+	v_AUTO_RENEW VARCHAR2(1);
+	v_TDS_AMT NUMBER(15, 2);
+	v_TDS_AMT_DC VARCHAR2(1);
+	v_SBRK_INT NUMBER(15,2);
+	v_BCINT_RT NUMBER (4,2);
+	v_LBRK_INT NUMBER(15,2);
+	v_TRAN_PART VARCHAR2(30);
+	v_TRAN_PART1 VARCHAR2(30);
+	
+	
+-- LATTER ADDED
+	v_DUPLICATION_REC_CNT NUMBER(5,0) := 0;
+	v_ACTNO_PREV VARCHAR2(13);
+	v_SUB_ACCOUNTS_NO NUMBER := 0;
+BEGIN
+	v_oFile := UTL_FILE.FOPEN('CSV_OUTPUT_DIR',c_LOG_FILE_NAME,'a');
+	UTL_FILE.PUTF(v_oFile,'-------CLOSEDET INSERT : Start Time %s-------%\n',TO_CHAR(SYSTIMESTAMP, 'HH12:MI:SS.FF4 AM'));
+	--STEP-1-START-GET BRANCH CODE
+	v_STAGE  := 100;
+	v_BRCODE := FUN_GET_ACTIVE_BRANCH_CODE();
+	v_STAGE  := 200;
+	SELECT * INTO rec_CONFIG FROM CSV_CONFIG;
+	--WHERE BRCODE=v_BRCODE;
+	--STEP-1-END-GET BRANCH CODE
+	--STEP-2-START-DROP EXISTING TABLES
+	v_STAGE  := 300;
+	DELETE FROM CLOSEDET ;
+	COMMIT;
+	--STEP-2-END-DELETE-RECORDS FROM EXISTING TABLE
+	--STEP-3-START-PROCESS CURSOR AND CALL THE INSERT SCRIPT
+	v_oFile_INSERT := UTL_FILE.FOPEN('CSV_OUTPUT_DIR',c_LOG_FILE_INSERT,'w');
+	UTL_FILE.PUTF(v_oFile_INSERT,'-------INSERT STARTED: Start Time %s-------%\n',TO_CHAR(SYSTIMESTAMP, 'HH12:MI:SS.FF4 AM'));
+	
+	FOR c_REC IN
+	(
+		SELECT * FROM MASTER WHERE STATUS='C' 
+	)
+	LOOP
+	  -- v_TOTAL_COUNT
+		v_STAGE  := 400;
+		v_TOTAL_COUNT := v_TOTAL_COUNT + 1;
+		
+	  -- Start of POST_UR_ID
+		v_STAGE  := 500;
+		v_POST_UR_ID := 100;
+	  -- End of POST_UR_ID
+		
+	  -- Start of POST_UR_TIME
+		v_STAGE  := 600;
+		v_POST_UR_TIME := NULL;
+	  -- End of POST_UR_TIME
+		
+	  -- Start of PASS_UR_ID
+		v_STAGE  := 700;
+		v_PASS_UR_ID := 100;
+	  -- End of PASS_UR_ID
+		
+	  -- Start of PASS_UR_TIME
+		v_STAGE  := 800;
+		v_PASS_UR_TIME := NULL;
+	  -- End of PASS_UR_TIME
+		
+	  -- Start of BR_CODE
+		v_STAGE  := 900;
+		v_BR_CODE := c_REC.BR_CODE;
+	  -- End of BR_CODE
+		
+	  -- Start of ACTNO
+		v_STAGE  := 1000;
+		v_ACTNO := c_REC.ACTNO;
+	  -- End of ACTNO
+		
+	  -- Start of STATUS
+		v_STAGE  := 1100;
+		v_STATUS := 'L';
+	  -- End of STATUS
+		
+	  -- Start of IR_NO
+		v_STAGE  := 1200;
+		v_IR_NO := NULL;
+	  -- End of IR_NO
+		
+	  -- Start of TRAN_DATE
+		v_STAGE  := 1300;
+		v_TRAN_DATE := c_REC.CLOSE_DT;
+		IF (v_TRAN_DATE IS NULL)THEN
+			SELECT MAX(TRAN_DATE) INTO v_TRAN_DATE FROM TRAN WHERE ACTNO=c_REC.ACTNO;
+		END IF;
+	  -- End of TRAN_DATE
+		
+	  -- Start of TRAN_CODE
+		v_STAGE  := 1400;
+		v_TRAN_CODE := NULL;
+	  -- End of TRAN_CODE
+		
+	  -- Start of TRAN_NO
+		v_STAGE  := 1500;
+		v_TRAN_NO := NULL;
+	  -- End of TRAN_NO
+		
+	  -- Start of BATCH_NO
+		v_STAGE  := 1600;
+		v_BATCH_NO := NULL;
+	  -- End of BATCH_NO
+		
+	  -- Start of BLACTNO1
+		v_STAGE  := 1700;
+		v_BLACTNO1 := NULL;
+	  -- End of BLACTNO1
+		
+	  -- Start of BLACTNO2
+		v_STAGE  := 1800;
+		v_BLACTNO2 := NULL;
+	  -- End of BLACTNO2
+		
+	  -- Start of BLACTNO3
+		v_STAGE  := 1900;
+		v_BLACTNO3 := NULL;
+	  -- End of BLACTNO3
+		
+	  -- Start of BLACTNO4
+		v_STAGE  := 2000;
+		v_BLACTNO4 := NULL;
+	  -- End of BLACTNO4
+		
+	  -- Start of BLACTNO5
+		v_STAGE  := 2100;
+		v_BLACTNO5 := NULL;
+	  -- End of BLACTNO5
+		
+	  -- Start of TRAMT1
+		v_STAGE  := 2200;
+		v_TRAMT1 := NULL;
+	  -- End of TRAMT1
+		
+	  -- Start of TRAMT1_AMT_DC
+		v_STAGE  := 2300;
+		v_TRAMT1_AMT_DC := NULL;
+	  -- End of TRAMT1_AMT_DC
+		
+	  -- Start of TRAMT2
+		v_STAGE  := 2400;
+		v_TRAMT2 := NULL;
+	  -- End of TRAMT2
+		
+	  -- Start of TRAMT2_AMT_DC
+		v_STAGE  := 2500;
+		v_TRAMT2_AMT_DC := NULL;
+	  -- End of TRAMT2_AMT_DC
+		
+	  -- Start of TRAMT3
+		v_STAGE  := 2600;
+		v_TRAMT3 := NULL;
+	  -- End of TRAMT3
+		
+	  -- Start of TRAMT3_AMT_DC
+		v_STAGE  := 2700;
+		v_TRAMT3_AMT_DC := NULL;
+	  -- End of TRAMT3_AMT_DC
+		
+	  -- Start of TRAMT4
+		v_STAGE  := 2800;
+		v_TRAMT4 := NULL;
+	  -- End of TRAMT4
+		
+	  -- Start of TRAMT4_AMT_DC
+		v_STAGE  := 2900;
+		v_TRAMT4_AMT_DC := NULL;
+	  -- End of TRAMT4_AMT_DC
+		
+	  -- Start of TRAMT5
+		v_STAGE  := 3000;
+		v_TRAMT5 := NULL;
+	  -- End of TRAMT5
+		
+	  -- Start of TRAMT5_AMT_DC
+		v_STAGE  := 3100;
+		v_TRAMT5_AMT_DC := NULL;
+	  -- End of TRAMT5_AMT_DC
+		
+	  -- Start of OLDINTRT
+		v_STAGE  := 3200;
+		v_OLDINTRT := NULL;
+	  -- End of OLDINTRT
+		
+	  -- Start of PERIOD_DAYS
+		v_STAGE  := 3300;
+		v_PERIOD_DAYS := NULL;
+	  -- End of PERIOD_DAYS
+		
+	  -- Start of PERIOD_MONTHS
+		v_STAGE  := 3400;
+		v_PERIOD_MONTHS := NULL;
+	  -- End of PERIOD_MONTHS
+		
+	  -- Start of INT_RT
+		v_STAGE  := 3500;
+		v_INT_RT := NULL;
+	  -- End of INT_RT
+		
+	  -- Start of PRIN_AMT
+		v_STAGE  := 3600;
+		v_PRIN_AMT := NULL;
+	  -- End of PRIN_AMT
+		
+	  -- Start of PRIN_AMT_DC
+		v_STAGE  := 3700;
+		v_PRIN_AMT_DC := NULL;
+	  -- End of PRIN_AMT_DC
+		
+	  -- Start of INT_AMT
+		v_STAGE  := 3800;
+		v_INT_AMT := NULL;
+	  -- End of INT_AMT
+		
+	  -- Start of INT_AMT_DC
+		v_STAGE  := 3900;
+		v_INT_AMT_DC := NULL;
+	  -- End of INT_AMT_DC
+		
+	  -- Start of INT_UPTO_DT
+		v_STAGE  := 4000;
+		v_INT_UPTO_DT := NULL;
+	  -- End of INT_UPTO_DT
+		
+	  -- Start of CHRG_AMT
+		v_STAGE  := 4100;
+		v_CHRG_AMT := NULL;
+	  -- End of CHRG_AMT
+		
+	  -- Start of CHRG_AMT_DC
+		v_STAGE  := 4200;
+		v_CHRG_AMT_DC := NULL;
+	  -- End of CHRG_AMT_DC
+	  
+	   -- Start of CHRG_AMT
+		v_STAGE  := 4101;
+		v_CHRG_AMT1 := NULL;
+	  -- End of CHRG_AMT
+		
+	  -- Start of CHRG_AMT_DC
+		v_STAGE  := 4202;
+		v_CHRG_AMT1_DC := NULL;
+	  -- End of CHRG_AMT_DC		
+		
+	  -- Start of RDUE_AMT
+		v_STAGE  := 4300;
+		v_RDUE_AMT := NULL;
+	  -- End of RDUE_AMT
+		
+	  -- Start of RDUE_AMT_DC
+		v_STAGE  := 4400;
+		v_RDUE_AMT_DC := NULL;
+	  -- End of RDUE_AMT_DC
+		
+	  -- Start of AUTO_RENEW
+		v_STAGE  := 4500;
+		v_AUTO_RENEW := NULL;
+	  -- End of AUTO_RENEW
+		
+	  -- Start of TDS_AMT
+		v_STAGE  := 4600;
+		v_TDS_AMT := NULL;
+	  -- End of TDS_AMT
+		
+	  -- Start of TDS_AMT_DC
+		v_STAGE  := 4700;
+		v_TDS_AMT_DC := NULL;
+	  -- End of TDS_AMT_DC
+	  
+	  --START OF v_SBRK_INT AND v_BCINT_RT
+	    v_STAGE:=4800;
+		v_SBRK_INT:=NULL;
+		v_BCINT_RT:=NULL;
+		
+	  --START OF v_LBRK_INT
+		v_STAGE:=4900;
+		v_LBRK_INT:=NULL;
+		
+	  --START OF v_TRAN_PART
+		v_STAGE:=5000;
+		v_TRAN_PART :=NULL;
+	  
+	  --START OF v_TRAN_PART1
+		v_STAGE:=5100;
+		v_TRAN_PART1 :=NULL;
+	
+	
+	v_STAGE  := 4800;
+	BEGIN
+		INSERT INTO CLOSEDET VALUES 
+		( 
+		v_POST_UR_ID, --POST_UR_ID
+		v_POST_UR_TIME, --POST_UR_TIME
+		v_PASS_UR_ID, --PASS_UR_ID
+		v_PASS_UR_TIME, --PASS_UR_TIME
+		v_BR_CODE, --BR_CODE
+		v_ACTNO, --ACTNO
+		v_STATUS, --STATUS
+		v_IR_NO, --IR_NO
+		v_TRAN_DATE, --TRAN_DATE
+		v_TRAN_CODE, --TRAN_CODE
+		v_TRAN_NO, --TRAN_NO
+		v_BATCH_NO, --BATCH_NO
+		v_BLACTNO1, --BLACTNO1
+		v_BLACTNO2, --BLACTNO2
+		v_BLACTNO3, --BLACTNO3
+		v_BLACTNO4, --BLACTNO4
+		v_BLACTNO5, --BLACTNO5
+		v_TRAMT1, --TRAMT1
+		v_TRAMT1_AMT_DC, --TRAMT1_AMT_DC
+		v_TRAMT2, --TRAMT2
+		v_TRAMT2_AMT_DC, --TRAMT2_AMT_DC
+		v_TRAMT3, --TRAMT3
+		v_TRAMT3_AMT_DC, --TRAMT3_AMT_DC
+		v_TRAMT4, --TRAMT4
+		v_TRAMT4_AMT_DC, --TRAMT4_AMT_DC
+		v_TRAMT5, --TRAMT5
+		v_TRAMT5_AMT_DC, --TRAMT5_AMT_DC
+		v_OLDINTRT, --OLDINTRT
+		v_PERIOD_DAYS, --PERIOD_DAYS
+		v_PERIOD_MONTHS, --PERIOD_MONTHS
+		v_INT_RT, --INT_RT
+		v_PRIN_AMT, --PRIN_AMT
+		v_PRIN_AMT_DC, --PRIN_AMT_DC
+		v_INT_AMT, --INT_AMT
+		v_INT_AMT_DC, --INT_AMT_DC
+		v_INT_UPTO_DT, --INT_UPTO_DT
+		v_CHRG_AMT, --CHRG_AMT
+		v_CHRG_AMT_DC, --CHRG_AMT_DC
+		v_CHRG_AMT1_DC,
+		v_RDUE_AMT, 
+		v_RDUE_AMT, --RDUE_AMT
+		v_RDUE_AMT_DC, --RDUE_AMT_DC
+		v_AUTO_RENEW, --AUTO_RENEW
+		v_TDS_AMT, --TDS_AMT
+		v_TDS_AMT_DC, --TDS_AMT_DC
+		v_SBRK_INT,
+		v_BCINT_RT,
+		v_LBRK_INT,
+		v_TRAN_PART,
+		v_TRAN_PART1,
+		c_REC.REF_KEY1 -- REF_KEY1
+		);
+		
+	
+		v_STAGE  := 4900;
+	--v_SUCCESS_COUNT 
+		v_SUCCESS_COUNT := v_SUCCESS_COUNT + 1;
+	/*
+	-- UPDATE MASTER STATUS
+		BEGIN
+			UPDATE MASTER 
+			SET STATUS = 'C'
+			WHERE ACTNO = v_ACTNO;
+		EXCEPTION
+			WHEN OTHERS THEN
+				UTL_FILE.PUTF(v_oFile_INSERT,'\n ERROR MASTER ENTRY MISSING ACTNO%s', v_ACTNO);
+		END;
+		
+	-- UPDATE MASTER STATUS
+	*/
+	EXCEPTION
+		WHEN OTHERS THEN
+			v_FAILURE_COUNT := v_FAILURE_COUNT + 1;
+	END;	
+		<<EXIT_RECORD>>			
+			COMMIT;
+	END LOOP;
+	
+
+	
+	UTL_FILE.PUTF(v_oFile_INSERT,'\n-------INSERT ENDED: End Time %s-------%\n',TO_CHAR(SYSTIMESTAMP, 'HH12:MI:SS.FF4 AM'));
+	UTL_FILE.FCLOSE(v_oFile_INSERT);
+	UTL_FILE.PUTF(v_oFile,'-------SUMMARY : \n');
+	UTL_FILE.PUTF(v_oFile,'-NO. OF RECORD PROCESS TO CLOSEDET=%s\n',v_TOTAL_COUNT);
+	UTL_FILE.PUTF(v_oFile,'-NO. OF RECORDS ADDED TO CLOSEDET=%s\n',v_SUCCESS_COUNT);
+	UTL_FILE.PUTF(v_oFile,'-NO. OF RECORDS DENIE DUE TO v_DUPLICATION_REC_CNT =%s\n',v_DUPLICATION_REC_CNT);		
+	UTL_FILE.PUTF(v_oFile,'-NO. OF FAILURES TO CLOSEDET=%s\n',v_FAILURE_COUNT);
+	UTL_FILE.PUTF(v_oFile,'-------ACCOUNT INSERT : End Time %s-------%\n',TO_CHAR(SYSTIMESTAMP, 'HH12:MI:SS.FF4 AM'));
+	UTL_FILE.FCLOSE(v_oFile);
+EXCEPTION
+	WHEN OTHERS THEN
+	ROLLBACK;
+	UPDATE CSV_CONFIG SET PROCESS_STATUS = 'N' WHERE STATUS='L';
+	COMMIT;
+	DBMS_OUTPUT.PUT_LINE('???????UNRECOVERABLE ERROR : STAGE#' || v_STAGE || '-Error- ' || SQLCODE || '-' || SQLERRM );
+	UTL_FILE.PUTF(v_oFile,'\n???????UNRECOVERABLE ERROR : STAGE#%s-Error-%s-%s, End Time %s-------%\n',v_STAGE,SQLCODE,SQLERRM,TO_CHAR(SYSTIMESTAMP, 'HH12:MI:SS.FF4 AM'));
+	UTL_FILE.FCLOSE(v_oFile);
+END;
+/
