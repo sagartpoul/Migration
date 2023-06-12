@@ -1,0 +1,9 @@
+
+1)-- bank level initialization
+	@D:\CSVTOOL_SAGAR\INIT.SQL  D:\CSVTOOL_SAGAR\
+	
+2)-- set branch level initialization
+	@D:\CSVTOOL_SAGAR\INIT_SAGAR.SQL D:\CSVTOOL_SAGAR\
+	
+3)-- run individual objects
+	@D:\CSVTOOL_SAGAR\MAIN.SQL D:\CSVTOOL_SAGAR\
