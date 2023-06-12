@@ -1,0 +1,10 @@
+
+OPEN COMMAND PROMPT:---
+
+sqlplus /nolog
+SQL> connect / as sysdba
+SQL> shutdown abort
+SQL> startup nomount
+SQL> alter database mount;
+SQL> alter database open;
+

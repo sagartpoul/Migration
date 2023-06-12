@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+
+<title>database - How to resolve ORA-011033: ORACLE initialization or shutdown in progress - Stack Overflow</title>
+    <link rel="shortcut icon" href="//cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="//cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com"/>
+    <meta property="og:type" content="website" />    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&a" />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How to resolve ORA-011033: ORACLE initialization or shutdown in progress" />
+    <meta name="twitter:description" property="og:description" itemprop="description" content="When trying to connect to an ORACLE user via TOAD (Quest Software) or any other means (Oracle Enterprise Manager) I simply get the error:
+
+
+  ORA-011033: ORACLE initialization or
+  shutdown in prog..." />
+    <meta property="og:url" content="http://stackoverflow.com/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress"/>
+    <link rel="canonical" href="http://stackoverflow.com/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress" />
+
+    
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//cdn.sstatic.net/Js/stub.en.js?v=d822f9457fba"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.sstatic.net/Sites/stackoverflow/all.css?v=563032423215">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;How to resolve ORA-011033: ORACLE initialization or shutdown in progress&#39;" href="/feeds/question/53676">
+            <meta name="twitter:app:country" content="US" />
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:iphone" content="871299723" />
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress" />
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:ipad" content="871299723" />
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress" />
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:53676});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '53676');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1471935046,"routeName":"Questions/Show","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableInsertDocLinkDialog":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"868513c484304a1e8b6d3137f4258e53","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableNewLinkInsertDialog":true},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"a9343db4f10d","js/moderator.en.js":"2dc7215c84c2","js/full-anon.en.js":"0aba2ed13340","js/full.en.js":"ceb541f76be0","js/wmd.en.js":"bb30b2452b53","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"01e5e6d93d22","js/help.en.js":"b50417081cc4","js/tageditor.en.js":"17ad28fc31be","js/tageditornew.en.js":"62114035420b","js/inline-tag-editing.en.js":"a815357d00cd","js/revisions.en.js":"47de10a8358f","js/review.en.js":"e085a6ccd668","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"42c61d0a4f52","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"7628962b873f","js/keyboard-shortcuts.en.js":"00fdc019b6d3","js/external-editor.en.js":"93769406446f","js/external-editor.en.js":"93769406446f","js/snippet-javascript.en.js":"584357a9d52b","js/snippet-javascript-codemirror.en.js":"ed27f596c875"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+</head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    
+        <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        <iframe id="adzerk-user-match" width="0" height="0" frameborder="0" scrolling="no" onload="window.AUMIframeDone=true"
+                src="https://ssum-sec.casalemedia.com/usermatch?s=183712&amp;cb=https%3A%2F%2Fengine.adzerk.net%2Fudb%2F22%2Fsync%2Fi.gif%3FpartnerId%3D1%26userId%3D"
+                style="display: none;" marginheight="0" marginwidth="0"></iframe>
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="//stackoverflow.com">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:6 })"
+>chat</a>
+            </div>
+
+
+
+
+    <a href="//stackoverflow.com"
+       class="current-site-link site-link js-gps-track"
+       data-id="1"
+       data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com"
+       class="site-link js-gps-track"
+       data-id="552"
+       data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+        </ul>
+    </div>
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f53676%2fhow-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:10 })"
+>Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f53676%2fhow-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:11 })"
+>log in</a> to customize your list.
+            </div>
+    </div>
+    <div class="header">
+        <h3><a href="//stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+                <a href="//stackexchange.com"
+                   class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track"
+                   data-gps-track="site_switcher.show"
+                   title="A list of all 160 Stack Exchange sites">
+                    <span class="hidden-text">Stack Exchange</span>
+                </a>
+
+    <a href="#"
+       class="topbar-icon icon-inbox yes-hover js-inbox-button"
+       title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#"
+       class="topbar-icon icon-achievements yes-hover js-achievements-button "
+       data-unread-class=""
+       title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f53676%2fhow-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f53676%2fhow-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress" class="login-link">log in</a>
+
+                            <a href="/tour">tour</a>
+        <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+            help
+            <span class="triangle"></span>
+        </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="//meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://business.stackoverflow.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+                                            </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="Search Q&amp;A" value="" tabindex="1" autocomplete="off" maxlength="240" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="/" >
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="/questions">Questions</a></li>
+                            <li><a id="nav-jobs" href="/jobs?med=site-ui&ref=jobs-tab">Jobs</a></li>
+                                                <li><a id="nav-docs" href="/documentation">Documentation</a></li>
+                        <li><a id="nav-tags" href="/tags">Tags</a></li>
+                        <li><a id="nav-users" href="/users">Users</a></li>
+                        <li><a id="nav-badges" href="/help/badges">Badges</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion"  href="/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="//cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<div class="hero-box docs-announcement">
+    <div class="hero-close js-dismiss">Dismiss</div>
+    
+    
+    <div class="hero-content text-left">
+        <div class="text-wrapper">
+            <div class="hero-title">
+                Announcing Stack Overflow Documentation
+            </div>
+
+            <p class="subtitle">
+                We started with Q&amp;A. Technical documentation is next, and we need your help.
+            </p>
+            <p class="subtitle">
+                Whether you're a beginner or an experienced developer, you <i>can</i> contribute.
+            </p>
+        </div>
+
+            <a href="/users/signup?ssrc=docs_hero&returnurl=%2Ftour%2Fdocumentation" class="btn js-gps-track"
+               data-gps-track="docs.hero.clicked({target: 2 })">
+                Sign up and start helping &rarr;
+            </a>
+            <a href="/tour/documentation" class="btn-clear js-gps-track"
+               data-gps-track="docs.hero.clicked({target: 1 })">
+                Learn more about Documentation &rarr;
+            </a>
+
+        <div class="img"></div>
+    </div>
+</div>
+
+<script>
+    StackExchange.ready(function() {
+        var location = 0;
+        if ($("body").hasClass("question-page")) {
+            location = 2;
+        } else if ($("body").hasClass("home-page")) {
+            location = 1;
+        }
+
+        $(".docs-announcement .js-dismiss").one("click", function() {
+            $(".docs-announcement").fadeOut("fast");
+            $.post("/dismiss-documentation-hero", { fkey: StackExchange.options.user.fkey, location: location });
+        });
+
+        StackExchange.using("gps", function () {
+            StackExchange.gps.track("docs.hero.show", { location: location }, true);
+        });
+    });
+</script>			<div id="question-header">
+                <h1 itemprop="name"><a href="/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress" class="question-hyperlink">How to resolve ORA-011033: ORACLE initialization or shutdown in progress</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="53676"  id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk603770576",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk603770576"></div>    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="53676">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">24</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#">favorite</a>
+        <div class="favoritecount"><b>10</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>When trying to connect to an ORACLE user via TOAD (Quest Software) or any other means (Oracle Enterprise Manager) I simply get the error:</p>
+
+<blockquote>
+  <p>ORA-011033: ORACLE initialization or
+  shutdown in progress</p>
+</blockquote>
+
+<p><hr /></p>
+
+<p>[in the spirit of StackOverflow I will answer this one myself - at least I'll relate how I resolved it in my case - please also relate your own such adventures...]</p>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/database" class="post-tag" title="show questions tagged &#39;database&#39;" rel="tag">database</a> <a href="/questions/tagged/oracle" class="post-tag" title="show questions tagged &#39;oracle&#39;" rel="tag">oracle</a> 
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/q/53676" title="short permalink to this question" class="short-link" id="link-post-53676">share</a><span class="lsep">|</span><a href="/posts/53676/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2008-09-10 09:14:47Z" class="relativetime">Sep 10 '08 at 9:14</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/5351/rohancragg"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/6004e8992a77c769a60c79f7aa6415aa?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/5351/rohancragg">rohancragg</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,410</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="22 silver badges"><span class="badge2"></span><span class="badgecount">22</span></span><span title="37 bronze badges"><span class="badge3"></span><span class="badgecount">37</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-53676" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-53676" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>        </table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								4 Answers
+                                <span style="display:none;" itemprop="answerCount">4</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="/questions/53676/how-to-resolve-ora-011033-oracle-initialization-or-shutdown-in-progress?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="53684"></a>
+<div id="answer-53684" class="answer accepted-answer" data-answerid="53684"  itemscope itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="53684">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">54</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>After some googling I found the advice to do the following:</p>
+
+<pre class="lang-none prettyprint-override"><code>&gt; sqlplus /nolog
+
+SQL&gt; connect / as sysdba
+
+Connected.
+
+SQL&gt; shutdown abort
+
+ORACLE Instance shut down.
+
+SQL&gt; startup nomount
+
+ORACLE Instance started
+
+SQL&gt; alter database mount;
+
+SQL&gt; alter database open;
+</code></pre>
+
+<p>Which still gave the error:</p>
+
+<blockquote>
+  <p>ORA-00600: internal error code, arguments: [kcratr1_lostwrt]</p>
+</blockquote>
+
+<p>I then found the advice to do the following:</p>
+
+<pre class="lang-none prettyprint-override"><code>SQL&gt; startup mount
+
+ORACLE Instance started
+
+SQL&gt; recover database 
+
+Media recovery complete
+
+SQL&gt; alter database open;
+
+Database altered
+</code></pre>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/53684" title="short permalink to this answer" class="short-link" id="link-post-53684">share</a><span class="lsep">|</span><a href="/posts/53684/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/53684/revisions" title="show all edits to this post">edited <span title="2014-04-19 19:40:21Z" class="relativetime">Apr 19 '14 at 19:40</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1423083/mukul-goel"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/i77PX.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1423083/mukul-goel">Mukul Goel</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">5,111</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="16 silver badges"><span class="badge2"></span><span class="badgecount">16</span></span><span title="53 bronze badges"><span class="badge3"></span><span class="badgecount">53</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature owner">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2008-09-10 09:22:14Z" class="relativetime">Sep 10 '08 at 9:22</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/5351/rohancragg"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/6004e8992a77c769a60c79f7aa6415aa?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/5351/rohancragg">rohancragg</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,410</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="22 silver badges"><span class="badge2"></span><span class="badgecount">22</span></span><span title="37 bronze badges"><span class="badge3"></span><span class="badgecount">37</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-53684" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="1"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-22994644" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">it was very helpful :)</span>
+                    &ndash;&nbsp;<a href="/users/508957/sura2k"
+                       title="1,560 reputation"
+                       class="comment-user">sura2k</a>
+                <span class="comment-date" dir="ltr"><span title="2013-04-19 11:37:20Z" class="relativetime-clean">Apr 19 '13 at 11:37</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-28326397" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Second fragment worked for me! (after shutdown)</span>
+                    &ndash;&nbsp;<a href="/users/1297812/laffuste"
+                       title="4,536 reputation"
+                       class="comment-user">laffuste</a>
+                <span class="comment-date" dir="ltr"><span title="2013-10-03 03:31:54Z" class="relativetime-clean">Oct 3 '13 at 3:31</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-31487937" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Second fragment worked for me too! One minor syntax issue, semi-colon is required in last &quot;alter database open&quot; command.</span>
+                    &ndash;&nbsp;<a href="/users/747092/shakerlxxv"
+                       title="317 reputation"
+                       class="comment-user">shakerlxxv</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-06 23:58:49Z" class="relativetime-clean">Jan 6 '14 at 23:58</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-55640211" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Old thread but thought I&#39;d just add that the second fragment worked for me too.</span>
+                    &ndash;&nbsp;<a href="/users/1160629/kps-uk"
+                       title="232 reputation"
+                       class="comment-user">KPS-UK</a>
+                <span class="comment-date" dir="ltr"><span title="2015-11-26 14:02:52Z" class="relativetime-clean">Nov 26 '15 at 14:02</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-55640247" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">After first fragment I got the following, but the database recover, resolved my issue. ERROR at line 1: ORA-00600: internal error code, arguments: [kcratr_scan_lastbwr], [], [], [], [], [], [], [], [], [], [], []</span>
+                    &ndash;&nbsp;<a href="/users/1160629/kps-uk"
+                       title="232 reputation"
+                       class="comment-user">KPS-UK</a>
+                <span class="comment-date" dir="ltr"><span title="2015-11-26 14:03:46Z" class="relativetime-clean">Nov 26 '15 at 14:03</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-53684" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link  dno"
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   ></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href=# onclick="">show <b>1</b> more comment</a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1586373511",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1586373511"></div>
+  
+<a name="21298642"></a>
+<div id="answer-21298642" class="answer" data-answerid="21298642"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="21298642">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">13</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>(to give back to SO folks)I had this problem today -- Unfortunately ,  I was not able to resolve "starting my instance" by following the steps above . In short, after hours of looking around I was able to resolve it as follow. </p>
+
+<p>Problem</p>
+
+<p><img src="http://i.stack.imgur.com/hHCTQ.png" alt="enter image description here"></p>
+
+<p>THIS DIDNT WORK, I WAS GETTING ERROR [0600]</p>
+
+<pre><code>SQL&gt; shutdown abort
+ORACLE instance shut down.
+SQL&gt; startup mount
+ORACLE instance started.
+
+Total System Global Area 1904054272 bytes
+Fixed Size                  2404024 bytes
+Variable Size             570425672 bytes
+Database Buffers         1325400064 bytes
+Redo Buffers                5824512 bytes
+Database mounted.
+SQL&gt; recover database
+Media recovery complete.
+SQL&gt; alter database open
+  2
+SQL&gt; alter database open;
+alter database open
+*
+ERROR at line 1:
+ORA-00600: internal error code, arguments: [kcratr_nab_less_than_odr], [1],
+[108], [615], [655], [], [], [], [], [], [], []`
+</code></pre>
+
+<p>HERE IS MY SOLUTION TO THIS ISSUE:</p>
+
+<pre><code>    SQL&gt; Startup mount
+ORA-01081: cannot start already-running ORACLE - shut it down first
+SQL&gt; shutdown abort
+ORACLE instance shut down.
+SQL&gt;
+SQL&gt; startup mount
+ORACLE instance started.
+
+Total System Global Area 1904054272 bytes
+Fixed Size                  2404024 bytes
+Variable Size             570425672 bytes
+Database Buffers         1325400064 bytes
+Redo Buffers                5824512 bytes
+Database mounted.
+SQL&gt; Show parameter control_files
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+control_files                        string      C:\APP\USER\ORADATA\ORACLEDB\C
+                                                 ONTROL01.CTL, C:\APP\USER\FAST
+                                                 _RECOVERY_AREA\ORACLEDB\CONTRO
+                                                 L02.CTL
+SQL&gt; select a.member,a.group#,b.status from v$logfile a ,v$log b where a.group#=
+b.group# and b.status='CURRENT'
+  2
+SQL&gt; select a.member,a.group#,b.status from v$logfile a ,v$log b where a.group#=
+b.group# and b.status='CURRENT';
+
+MEMBER
+--------------------------------------------------------------------------------
+
+    GROUP# STATUS
+---------- ----------------
+C:\APP\USER\ORADATA\ORACLEDB\REDO03.LOG
+         3 CURRENT
+
+
+SQL&gt; shutdown abort
+ORACLE instance shut down.
+SQL&gt; startup mount
+ORACLE instance started.
+
+Total System Global Area 1904054272 bytes
+Fixed Size                  2404024 bytes
+Variable Size             570425672 bytes
+Database Buffers         1325400064 bytes
+Redo Buffers                5824512 bytes
+Database mounted.
+SQL&gt; recover database using backup controlfile until cancel;
+ORA-00279: change 4234808 generated at 01/21/2014 18:31:05 needed for thread 1
+ORA-00289: suggestion :
+C:\APP\USER\FAST_RECOVERY_AREA\ORACLEDB\ARCHIVELOG\2014_01_22\O1_MF_1_108_%U_.AR
+
+C
+ORA-00280: change 4234808 for thread 1 is in sequence #108
+
+
+Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}
+C:\APP\USER\ORADATA\ORACLEDB\REDO03.LOG
+Log applied.
+Media recovery complete.
+SQL&gt; alter database open resetlogs;
+
+Database altered.
+</code></pre>
+
+<p>FINALLY IT WORKED:</p>
+
+<p><img src="http://i.stack.imgur.com/TXcoQ.png" alt="enter image description here"></p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/21298642" title="short permalink to this answer" class="short-link" id="link-post-21298642">share</a><span class="lsep">|</span><a href="/posts/21298642/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/21298642/revisions" title="show all edits to this post">edited <span title="2015-10-03 04:20:35Z" class="relativetime">Oct 3 '15 at 4:20</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-01-23 03:14:12Z" class="relativetime">Jan 23 '14 at 3:14</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2052097/z"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/johoR.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2052097/z">z_-</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,484</span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="22 bronze badges"><span class="badge3"></span><span class="badgecount">22</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-21298642" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-34907137" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I was persistently getting oracle initialization or shutdown in progress. With this I was able to workaround this problem. But still my em service is not up and I am not able to access it on web.</span>
+                    &ndash;&nbsp;<a href="/users/646961/peeyush"
+                       title="1,456 reputation"
+                       class="comment-user">peeyush</a>
+                <span class="comment-date" dir="ltr"><span title="2014-04-05 05:56:12Z" class="relativetime-clean">Apr 5 '14 at 5:56</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-34929300" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Make sure all Oracle services are enabled . Take a look here for more info&gt; <a href="http://docs.oracle.com/cd/B16276_01/doc/server.102/b14196/em_manage002.htm" rel="nofollow">docs.oracle.com/cd/B16276_01/doc/server.102/b14196/&hellip;</a></span>
+                    &ndash;&nbsp;<a href="/users/2052097/z"
+                       title="1,484 reputation"
+                       class="comment-user">z_-</a>
+                <span class="comment-date" dir="ltr"><span title="2014-04-06 03:15:02Z" class="relativetime-clean">Apr 6 '14 at 3:15</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-34929650" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I tried many things.. In the end it gave up saying &quot;A service specific error occurred: 2&quot; without giving any additional error.</span>
+                    &ndash;&nbsp;<a href="/users/646961/peeyush"
+                       title="1,456 reputation"
+                       class="comment-user">peeyush</a>
+                <span class="comment-date" dir="ltr"><span title="2014-04-06 03:48:51Z" class="relativetime-clean">Apr 6 '14 at 3:48</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-62029328" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">for win7 oracle full 11g worked</span>
+                    &ndash;&nbsp;<a href="/users/944593/shareef"
+                       title="2,891 reputation"
+                       class="comment-user">shareef</a>
+                <span class="comment-date" dir="ltr"><span title="2016-05-16 09:34:55Z" class="relativetime-clean">May 16 at 9:34</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-63235980" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">for win 7 oracle 12g worked</span>
+                    &ndash;&nbsp;<a href="/users/617146/silentbang"
+                       title="2,449 reputation"
+                       class="comment-user">Silentbang</a>
+                <span class="comment-date" dir="ltr"><span title="2016-06-17 21:37:57Z" class="relativetime-clean">Jun 17 at 21:37</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-21298642" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="142790"></a>
+<div id="answer-142790" class="answer" data-answerid="142790"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="142790">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">4</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>This error can also occur in the normal situation when a database is starting or stopping. Normally on startup you can wait until the startup completes, then connect as usual. If the error persists, the <em>service</em> (on a Windows box) may be started without the <em>database</em> being started. This may be due to startup issues, or because the service is not configured to automatically start the database. In this case you will have to connect as sysdba and physically start the database using the "startup" command.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/142790" title="short permalink to this answer" class="short-link" id="link-post-142790">share</a><span class="lsep">|</span><a href="/posts/142790/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2008-09-27 02:33:52Z" class="relativetime">Sep 27 '08 at 2:33</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/20625/joshl"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/374b3216173cedb2b4339bce35118852?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/20625/joshl">JoshL</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">6,099</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="42 silver badges"><span class="badge2"></span><span class="badgecount">42</span></span><span title="54 bronze badges"><span class="badge3"></span><span class="badgecount">54</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-142790" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-142790" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="35026997"></a>
+<div id="answer-35026997" class="answer" data-answerid="35026997"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="35026997">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I used a combination of the answers from rohancragg, Mukul Goel, and NullSoulException from above. However I had an additional error: </p>
+
+<p>ORA-01157: cannot identify/lock data file string - see DBWR trace file</p>
+
+<p>To which I found the answer here: <a href="http://nimishgarg.blogspot.com/2014/01/ora-01157-cannot-identifylock-data-file.html" rel="nofollow">http://nimishgarg.blogspot.com/2014/01/ora-01157-cannot-identifylock-data-file.html</a></p>
+
+<p>Incase the above post gets deleted I am including the commands here as well.</p>
+
+<pre><code>C:\&gt;sqlplus sys/sys as sysdba
+SQL*Plus: Release 11.2.0.3.0 Production on Tue Apr 30 19:07:16 2013
+Copyright (c) 1982, 2011, Oracle.  All rights reserved.
+Connected to an idle instance.
+
+SQL&gt; startup
+ORACLE instance started.
+Total System Global Area  778387456 bytes
+Fixed Size                  1384856 bytes
+Variable Size             520097384 bytes
+Database Buffers          251658240 bytes
+Redo Buffers                5246976 bytes
+Database mounted.
+ORA-01157: cannot identify/lock data file 11 – see DBWR trace file
+ORA-01110: data file 16: 'E:\oracle\app\nimish.garg\oradata\orcl\test_ts.dbf'
+
+SQL&gt; select NAME from v$datafile where file#=16;
+NAME
+--------------------------------------------------------------------------------
+E:\ORACLE\APP\NIMISH.GARG\ORADATA\ORCL\TEST_TS.DBF
+
+SQL&gt; alter database datafile 16 OFFLINE DROP;
+Database altered.
+
+SQL&gt; alter database open;
+Database altered.
+</code></pre>
+
+<p>Thanks everyone you saved my day!</p>
+
+<p>Fissh</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/35026997" title="short permalink to this answer" class="short-link" id="link-post-35026997">share</a><span class="lsep">|</span><a href="/posts/35026997/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2016-01-27 01:02:06Z" class="relativetime">Jan 27 at 1:02</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/811058/gadildafissh"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/PYfzQ.png?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/811058/gadildafissh">gadildafissh</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,368</span><span title="11 silver badges"><span class="badge2"></span><span class="badgecount">11</span></span><span title="18 bronze badges"><span class="badge3"></span><span class="badgecount">18</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-35026997" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-35026997" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator">&#9830;</span> <span dir="ltr"><span title="2013-07-24 18:42:51Z" class="relativetime">Jul 24 '13 at 18:42</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="/help/whats-reputation">reputation</a> on this site (the <a href="/help/privileges/new-user">association bonus does not count</a>).
+<br /><br />
+Would you like to answer one of these <a href="/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you&#39;re looking for?							Browse other questions tagged <a href="/questions/tagged/database" class="post-tag" title="show questions tagged &#39;database&#39;" rel="tag">database</a> <a href="/questions/tagged/oracle" class="post-tag" title="show questions tagged &#39;oracle&#39;" rel="tag">oracle</a>  or <a href="/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2008-09-10 09:14:47Z"><b>7 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>133497 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2016-01-27 01:02:06Z">6 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk159264221",[5,17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk159264221"></div>
+            <div id="hireme"></div>
+        <script>
+;"use strict";var _typeof=typeof Symbol=="function"&&typeof Symbol.iterator=="symbol"?function(n){return typeof n}:function(n){return n&&typeof Symbol=="function"&&n.constructor===Symbol?"symbol":typeof n};(function(n){try{var t=function(){var r,t,i;if(typeof[].indexOf!="function")return{v:void 0};if(r=["stackoverflow.com","serverfault.com","careers.stackoverflow.com","blog.codinghorror.com","joelonsoftware.com","www.joelonsoftware.com"],r[0]!=="*"&&r.indexOf(location.hostname)===-1)return{v:void 0};t=window;t.clc_opts=n;n.autoload&&(t.clc_init=t.clc_init||[],t.clc_init.push(function(){return t.clc.load()}));i=document.createElement("script");i.async=!0;i.src=n.lib;document.body.appendChild(i)}();if((typeof t=="undefined"?"undefined":_typeof(t))==="object")return t.v}catch(i){}}).call(null, {"az":true,"kt":2000,"tto":true,"autoload":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"allowed":["stackoverflow.com","serverfault.com","careers.stackoverflow.com","blog.codinghorror.com","joelonsoftware.com","www.joelonsoftware.com"],"h":"clc.stackoverflow.com","u":"//clc.stackoverflow.com/p.js","lib":"//cdn.sstatic.net/clc/clc.min.js?v=84432a71b7a2"});        </script>
+			
+
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="/q/4408402" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="/questions/4408402/oracle-initialization-exception?noredirect=1" class="question-hyperlink">oracle initialization exception</a>
+</div>
+<div class="spacer">
+	<a href="/q/13015102" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/13015102/ora-00205-error-in-identifying-control-file-check-alert-log-for-more-info?noredirect=1" class="question-hyperlink">ora-00205: error in identifying control file, check alert log for more info</a>
+</div>
+<div class="spacer">
+	<a href="/q/11054597" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/11054597/oracle-initialization-or-shutdown-in-progress?noredirect=1" class="question-hyperlink">oracle initialization or shutdown in progress</a>
+</div>
+<div class="spacer">
+	<a href="/q/36841779" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/36841779/unable-to-connect-to-oracle-db-ora-01033-oracle-initialization-or-shutdown-in?noredirect=1" class="question-hyperlink">Unable to connect to Oracle DB - ORA-01033: ORACLE initialization or shutdown in progress</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer"><a href="/q/10916908" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/10916908/not-able-to-shutdown-oracle-database-ora-01031" class="question-hyperlink">Not able to shutdown Oracle Database ORA-01031</a></div><div class="spacer"><a href="/q/11054597" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/11054597/oracle-initialization-or-shutdown-in-progress" class="question-hyperlink">oracle initialization or shutdown in progress</a></div><div class="spacer"><a href="/q/15088760" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/15088760/how-to-reproduce-error-java-sql-sqlexception-ora-01033-oracle-initialization-o" class="question-hyperlink">How to reproduce error java.sql.SQLException: ORA-01033: ORACLE initialization or shutdown in progress?</a></div><div class="spacer"><a href="/q/17337120" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">1</div></a><a href="/questions/17337120/oracle-shutdown-error-ora-01033" class="question-hyperlink">Oracle Shutdown error ORA-01033</a></div><div class="spacer"><a href="/q/18491892" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">2</div></a><a href="/questions/18491892/ora-1033-oracle-initialization-or-shutdown-in-progress" class="question-hyperlink">ORA-1033: ORACLE initialization or shutdown in progress</a></div><div class="spacer"><a href="/q/23963774" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">1</div></a><a href="/questions/23963774/oracle-initialization-or-shutdown-in-progress-error" class="question-hyperlink">oracle initialization or shutdown in progress error</a></div><div class="spacer"><a href="/q/27321805" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">-3</div></a><a href="/questions/27321805/ora-011033-oracle-initialization-or-shutdown-in-progress-cant-connect-to-hr" class="question-hyperlink">ORA-011033: ORACLE initialization or shutdown in progress can&#39;t connect to HR</a></div><div class="spacer"><a href="/q/29325024" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/29325024/ora-01033-oracle-initialization-or-shutdown-in-progress" class="question-hyperlink">ORA-01033: ORACLE initialization or shutdown in progress</a></div><div class="spacer"><a href="/q/31025054" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">-2</div></a><a href="/questions/31025054/ora-01033-oracle-initialization-or-shutdown-in-progress-database-12c-error" class="question-hyperlink">ORA-01033: ORACLE initialization or shutdown in progress database 12c error</a></div><div class="spacer"><a href="/q/36841779" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/36841779/unable-to-connect-to-oracle-db-ora-01033-oracle-initialization-or-shutdown-in" class="question-hyperlink">Unable to connect to Oracle DB - ORA-01033: ORACLE initialization or shutdown in progress</a></div>
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="//stackexchange.com/questions?tab=hot" 
+           class="js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li >
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/77195/luggage-etiquette-on-european-trains" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Luggage etiquette on European trains
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1116086/is-there-a-way-to-emulate-dragdrop-without-having-to-keep-the-mouse-held-down" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a way to emulate drag+drop without having to keep the mouse held down?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/798298/moving-servers-within-the-same-building" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Moving Servers Within The Same Building
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/124552/discovering-crosswords" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Discovering crosswords
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/101280/is-raining-cats-and-dogs-still-used-nowadays" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is &quot;Raining Cats and dogs&quot; still used nowadays?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-japanese" title="Japanese Language Stack Exchange"></div><a href="http://japanese.stackexchange.com/questions/38647/what-dialect-are-these-numbers-from" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:257 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What dialect are these numbers from?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1900548/does-choosing-a-counting-function-require-the-axiom-of-choice" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does choosing a counting function require the Axiom of Choice?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/344125/is-there-a-proverb-or-idiom-describing-incompetence" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a proverb or idiom describing incompetence?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/139267/program-that-removes-comments-from-c-and-c-programs" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Program that removes comments from C and C++ programs
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div><a href="http://gamedev.stackexchange.com/questions/128698/why-do-most-racing-games-have-tracks-that-are-closed-loops" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do most racing games have tracks that are closed loops?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/41171/modify-a-magic-square" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Modify a magic square
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/90711/what-base-is-this-number-in" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What base is this number in?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/344258/what-do-you-call-a-person-who-keeps-talking-about-art-studies-art-criticizes-a" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do you call a person who keeps talking about art; studies art, criticizes art, and thinks he&#39;d be amazing with it. But he doesn&#39;t practice it
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1899250/are-two-mathematically-alike-functions-equal" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are two mathematically alike functions equal?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/275645/how-does-a-heatsink-on-top-of-a-cpu-which-is-hot-cool-down-your-cpu" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does a heatsink on top of a CPU, which is hot, cool down your CPU?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/253671/does-the-resistor-have-to-be-before-or-after-the-component" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does the resistor have to be before or after the component
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-astronomy" title="Astronomy Stack Exchange"></div><a href="http://astronomy.stackexchange.com/questions/17990/what-happens-to-the-99-9-of-the-sun-rays-that-do-not-fall-on-any-planets-or-an" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:514 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What happens to the 99.9 % of the sun-rays that do not fall on any planets or any other celestial body?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/231135/since-a-projection-matrix-is-idempotent-symmetric-and-square-why-isnt-it-just" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Since a projection matrix is idempotent, symmetric and square, why isn&#39;t it just the identity matrix?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/344021/wishful-thinking-to-the-point-of-lunacy" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Wishful thinking to the point of lunacy
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/90728/text-animation-format-code-golf" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Text animation format Code Golf
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/52391/is-there-any-plausible-reason-for-a-robots-eyes-to-glow" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there any plausible reason for a robot&#39;s eyes to glow?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/138537/why-did-sauron-not-have-control-of-the-three-rings-before-the-great-war" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why did Sauron not have control of the three rings before the Great War?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/52468/how-do-i-wage-war-against-a-collective-consciousness" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I wage war against a collective consciousness?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/253546/how-does-stereo-audio-signal-works-with-shared-ground-e-g-headphone-cables" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does stereo audio signal works with shared ground (e.g. headphone cables)
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="#" 
+           class="show-more js-show-more js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/53676" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/53676/ivc/f847');});
+</script>
+<noscript>
+    <div><img src="/posts/53676/ivc/f847" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-sql</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="/tour">tour</a>
+                    <a href="/help">help</a>
+                    <a href="http://blog.stackoverflow.com?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com">chat</a>
+                    <a href="http://data.stackexchange.com">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tr>
+            <th colspan=3>
+                Technology
+            </th>
+            <th >
+                Life / Arts
+            </th>
+            <th >
+                Culture / Recreation
+            </th>
+            <th >
+                Science
+            </th>
+            <th >
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="//stackoverflow.com" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="//serverfault.com" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="//superuser.com" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="//webapps.stackexchange.com" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="//askubuntu.com" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="//webmasters.stackexchange.com" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="//gamedev.stackexchange.com" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="//tex.stackexchange.com" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//programmers.stackexchange.com" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="//unix.stackexchange.com" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="//apple.stackexchange.com" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="//wordpress.stackexchange.com" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="//gis.stackexchange.com" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="//electronics.stackexchange.com" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="//android.stackexchange.com" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="//security.stackexchange.com" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//dba.stackexchange.com" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="//drupal.stackexchange.com" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="//sharepoint.stackexchange.com" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="//ux.stackexchange.com" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="//mathematica.stackexchange.com" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="//salesforce.stackexchange.com" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="//expressionengine.stackexchange.com" title="administrators, end users, developers and designers for ExpressionEngine&#174; CMS">ExpressionEngine&#174; Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//photo.stackexchange.com" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="//scifi.stackexchange.com" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="//graphicdesign.stackexchange.com" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="//movies.stackexchange.com" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="//cooking.stackexchange.com" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="//diy.stackexchange.com" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="//money.stackexchange.com" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="//academia.stackexchange.com" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//english.stackexchange.com" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="//skeptics.stackexchange.com" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="//judaism.stackexchange.com" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="//travel.stackexchange.com" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="//christianity.stackexchange.com" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="//gaming.stackexchange.com" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="//bicycles.stackexchange.com" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="//rpg.stackexchange.com" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//math.stackexchange.com" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="//stats.stackexchange.com" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="//cstheory.stackexchange.com" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="//physics.stackexchange.com" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="//mathoverflow.net" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="//chemistry.stackexchange.com" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="//biology.stackexchange.com" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//stackapps.com" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="//meta.stackexchange.com" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="//area51.stackexchange.com" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="//careers.stackoverflow.com">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo &#169; 2016 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2016.8.22.3911
+            </div>
+                </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    
+    
+        
+        ados.run.push(function () {
+                setTimeout(function () { $("#adzerk-user-match").remove(); }, window.AUMIframeDone ? 0 : 2000);
+                ados_setKeywords('database,oracle');; ados_load();
+        });   
+        
+</script>
+
+    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            
+            ga('create', 'UA-5620270-1');
+            ga('set', 'dimension2', '|database|oracle|');             ga('send', 'pageview');
+        
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script>
+        
+    
+            <script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+    </body>
+</html>

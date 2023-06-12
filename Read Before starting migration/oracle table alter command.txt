@@ -1,0 +1,148 @@
+Oracle ALTER TABLE Statement
+
+In Oracle, ALTER TABLE statement specifies how to add, modify, drop or delete columns in a table. It is also used to rename a table.
+How to add column in a table
+
+Syntax:
+
+    ALTER TABLE table_name  
+      ADD column_name column-definition;   
+
+Example:
+
+Consider that already existing table customers. Now, add a new column customer_age into the table customers.
+
+    ALTER TABLE customers  
+      ADD customer_age varchar2(50);  
+
+Now, a new column "customer_age" will be added in customers table.
+How to add multiple columns in the existing table
+
+Syntax:
+
+ 
+
+    ALTER TABLE table_name  
+      ADD (column_1 column-definition,  
+           column_2 column-definition,  
+           ...  
+           column_n column_definition);  
+
+Example
+
+    ALTER TABLE customers  
+      ADD (customer_type varchar2(50),  
+           customer_address varchar2(50));  
+
+Now, two columns customer_type and customer_address will be added in the table customers.
+
+How to modify column of a table
+
+Syntax:
+
+    ALTER TABLE table_name  
+      MODIFY column_name column_type;   
+
+Example:
+
+    ALTER TABLE customers  
+      MODIFY customer_name varchar2(100) not null;  
+
+Now the column column_name in the customers table is modified
+to varchar2 (100) and forced the column to not allow null values. 
+
+How to modify multiple columns of a table
+
+Syntax:
+
+    ALTER TABLE table_name  
+      MODIFY (column_1 column_type,  
+              column_2 column_type,  
+              ...  
+              column_n column_type);  
+
+Example:
+
+    ALTER TABLE customers  
+      MODIFY (customer_name varchar2(100) not null,  
+              city varchar2(100));  
+
+This will modify both the customer_name and city columns in the table. 
+
+How to drop column of a table
+
+Syntax:
+
+    ALTER TABLE table_name  
+      DROP COLUMN column_name;  
+
+Example:
+
+    ALTER TABLE customers  
+      DROP COLUMN customer_name;  
+
+This will drop the customer_name column from the table.
+
+How to rename column of a table
+
+Syntax:
+
+    ALTER TABLE table_name  
+      RENAME COLUMN old_name to new_name;  
+
+Example:
+
+    ALTER TABLE customers  
+     RENAME COLUMN customer_name to cname;  
+
+This will rename the column customer_name into cname.
+
+How to rename table
+
+Syntax:
+
+    ALTER TABLE table_name  
+      RENAME TO new_table_name;   
+
+Example:
+
+    ALTER TABLE customers  
+    RENAME TO retailers;  
+
+This will rename the customer table into "retailers" table. 
+
+Oracle DROP TABLE Statement
+
+Oracle DROP TABLE statement is used to remove or delete a table from the Oracle database.
+
+Syntax
+
+    DROP [schema_name].TABLE table_name  
+    [ CASCADE CONSTRAINTS ]  
+    [ PURGE ];   
+
+Parameters
+
+schema_name: It specifies the name of the schema that owns the table.
+
+table_name: It specifies the name of the table which you want to remove from the Oracle database.
+
+CASCADE CONSTRAINTS: It is optional. If specified, it will drop all referential integrity constraints as well.
+
+PURGE: It is also optional. If specified, the table and its dependent objects are placed in the recycle bin and can?t be recovered.
+If there are referential integrity constraints on table_name and you do not specify the CASCADE CONSTRAINTS option, the DROP TABLE statement will return an error and Oracle will not drop the table.
+DROP TABLE Example
+
+    DROP TABLE customers;  
+
+This will drop the table named customers. 
+
+DROP TABLE Example with PURGE parameter
+
+    DROP TABLE customers PURGE  
+
+This statement will drop the table called customers and issue a PURGE so that the space associated with the customers table is released and the customers table is not placed in recycle bin. So, it is not possible to recover that table if required.
+
+restored droped table
+ **********************
+FLASHBACK TABLE allmast TO BEFORE DROP;

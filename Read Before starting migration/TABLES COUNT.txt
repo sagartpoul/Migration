@@ -1,0 +1,4 @@
+QUERY TO FIND ALL TABLES COUNT(*)  AT A TIME FROM USER 
+
+select table_name, trim(column_value)COUNT from user_tables, xmltable((
+      'count(ora:view("'||table_name||'"))'))C  ;

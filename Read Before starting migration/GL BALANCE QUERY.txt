@@ -1,0 +1,8 @@
+-- SEE THE GL WISE TOTAL
+	SELECT A.*, B.TITLE  FROM (
+	select substr(blactno,5,3)gl, sum(shadow_bal)BALANCE from balance
+	group by substr(blactno,5,3)
+	order by substr(blactno,5,3)
+	)A INNER JOIN GLMAP B 
+	ON A.GL = B.BE_GLAC
+	ORDER BY GL;

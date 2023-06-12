@@ -1,0 +1,32 @@
+(https://stackoverflow.com/questions/18192521/ora-12505-
+tnslistener-does-not-currently-know-of-sid-given-in-connect-descript
+https://stackoverflow.com/questions/18192521/ora-12505-tnslistener-does-not-currently-know-of-sid-given-in-connect-descript)
+-----------------------------------------------------------
+
+
+conn  system ... password ... 
+connected. 
+alter system register;
+
+exit
+
+lsnrctl stat
+
+...
+Now you can see the service
+Even if don't see try this one out
+sqlplus /nolog
+
+conn system
+
+ ... password ... connected.
+
+alter system set local_listener = '(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))' scope = both;
+
+... system altered ...
+
+alter system register;
+
+exit
+
+lsnrctl stat
